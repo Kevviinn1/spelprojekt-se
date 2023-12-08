@@ -25,7 +25,7 @@
 /processorParam:TextureFormat=Color
 /build:0c48ac01693bef3 (1).png;space.png
 
-#begin 1000_F_508019766_Pv8YgrKfqNe41xKrUy3wk8PB5QZeelaA-removebg-preview.png
+#begin basket.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,9 +35,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:1000_F_508019766_Pv8YgrKfqNe41xKrUy3wk8PB5QZeelaA-removebg-preview.png;bucket.png
+/build:basket.png
 
-#begin star-game-pixelated-icon-vector-11699028_1_-removebg-preview.png
+#begin star.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,5 +47,12 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:star-game-pixelated-icon-vector-11699028_1_-removebg-preview.png;star.png
+/build:star.png
+
+#begin Times.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Times.spritefont
 
