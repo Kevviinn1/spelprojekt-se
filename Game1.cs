@@ -23,7 +23,7 @@ namespace Spelprojekt_Kevin_Ö
         Vector2 spacePosition = new Vector2(0, 0);
         KeyboardState tangentbord = Keyboard.GetState();
         Random RandomNummer = new Random();
-        Rectangle starRectangle = new Rectangle(300, 100, 80, 80);
+        Rectangle starRectangle = new Rectangle(550, 550, 80, 80);
         Rectangle basketRectangle = new Rectangle(550, 550, 250, 210);
         
         public Game1()
