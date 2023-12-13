@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:basket.png
 
+#begin Fire 1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Fire 1.mp3;starcatch.mp3
+
+#begin game_over_bad_chest.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:game_over_bad_chest.wav;gameoversound.wav
+
 #begin gameover.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -48,6 +60,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gameover.png
+
+#begin spaceship.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:spaceship.wav
 
 #begin star.png
 /importer:TextureImporter

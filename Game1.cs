@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
-using System.Security.Cryptography;
-using System.Threading.Tasks.Sources;
-using static System.Formats.Asn1.AsnWriter;
+
 
 namespace Spelprojekt_Kevin_Ö
 {
@@ -21,16 +21,20 @@ namespace Spelprojekt_Kevin_Ö
         SpriteFont Times;
 
         int score = 0;
-        
+
+        Song musik;
+
+        SoundEffect gameoversound;
+        SoundEffectInstance gameoversoundInstance;
         Vector2 spacePosition = new Vector2(0, 0);
         KeyboardState tangentbord = Keyboard.GetState();
         Random RandomNummer = new Random();
         Rectangle starRectangle = new Rectangle(550, 550, 80, 80);
         Rectangle basketRectangle = new Rectangle(550, 550, 250, 210);
         Vector2 gameoverPosition = new Vector2(390, 150);
-        
-      
-       
+        SoundEffect starcatchSound;
+        Song spaceshipMusic;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -58,7 +62,15 @@ namespace Spelprojekt_Kevin_Ö
             gameoverBild = Content.Load<Texture2D>("gameover");
 
             Times = Content.Load<SpriteFont>("Times");
-          
+            starcatchSound = Content.Load<SoundEffect>("starcatch");
+            musik = Content.Load<Song>("spaceship");
+            gameoversound = Content.Load<SoundEffect>("gameoversound");
+
+            gameoversoundInstance = gameoversound.CreateInstance();
+
+            MediaPlayer.Play(musik);
+            MediaPlayer.IsRepeating = true;
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,8 +107,16 @@ namespace Spelprojekt_Kevin_Ö
             {
                 starRectangle = new Rectangle(Random, 20, 80, 80);
                 score++;
+
+                starcatchSound.Play();
             }
 
+            if (starRectangle.Y > _graphics.PreferredBackBufferHeight)
+            {
+                gameoversoundInstance.Play();
+                MediaPlayer.Stop();
+                
+            }
 
             base.Update(gameTime);
 
