@@ -26,7 +26,10 @@ namespace Spelprojekt_Kevin_Ö
         Random RandomNummer = new Random();
         Rectangle starRectangle = new Rectangle(550, 550, 80, 80);
         Rectangle basketRectangle = new Rectangle(550, 550, 250, 210);
-        Vector2 gameoverPosition = new Vector2(100, 100);
+        Vector2 gameoverPosition = new Vector2(390, 150);
+
+      
+       
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -54,14 +57,15 @@ namespace Spelprojekt_Kevin_Ö
             gameoverBild = Content.Load<Texture2D>("gameover");
 
             Times = Content.Load<SpriteFont>("Times");
-
+          
             // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
 
-            starRectangle.Y += 7;
+            starRectangle.Y += 8;
+
 
             int Random = RandomNummer.Next(0, 1100);
 
@@ -69,24 +73,28 @@ namespace Spelprojekt_Kevin_Ö
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 basketRectangle.X -= 10;
+                if (basketRectangle.X < 0)
+                {
+                    basketRectangle.X = _graphics.PreferredBackBufferWidth - basketRectangle.Width;
+                }
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 basketRectangle.X += 10;
+                if (basketRectangle.X > _graphics.PreferredBackBufferWidth - basketRectangle.Width)
+                {
+                    basketRectangle.X = 0;
+                }
             }
 
-            if (basketRectangle.Intersects(starRectangle))
+
+            Rectangle basketCollisionRectangle = new Rectangle(basketRectangle.X + 50, basketRectangle.Y + 50, basketRectangle.Width - 100, basketRectangle.Height - 50);
+
+            if (basketCollisionRectangle.Intersects(starRectangle))
             {
                 starRectangle = new Rectangle(Random, 20, 80, 80);
                 score++;
             }
-
-            spriteBatch.Begin();
-            if (!basketRectangle.Intersects(starRectangle))
-            {
-                spriteBatch.Draw(gameoverBild, gameoverPosition, Color.White);
-            }
-            spriteBatch.End();
 
 
             base.Update(gameTime);
@@ -108,8 +116,11 @@ namespace Spelprojekt_Kevin_Ö
             spriteBatch.Draw(basketBild, basketRectangle, Color.White);
             spriteBatch.Draw(starBild, starRectangle, Color.White);
             spriteBatch.DrawString(Times, score.ToString(), Vector2.Zero, Color.White);
-            
-           
+            if (starRectangle.Y > _graphics.PreferredBackBufferHeight)
+            {
+                spriteBatch.Draw(gameoverBild, gameoverPosition, Color.White);
+                
+            }
             spriteBatch.End();
             
 
