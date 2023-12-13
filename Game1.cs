@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Security.Cryptography;
+using System.Threading.Tasks.Sources;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Spelprojekt_Kevin_Ö
@@ -27,7 +28,7 @@ namespace Spelprojekt_Kevin_Ö
         Rectangle starRectangle = new Rectangle(550, 550, 80, 80);
         Rectangle basketRectangle = new Rectangle(550, 550, 250, 210);
         Vector2 gameoverPosition = new Vector2(390, 150);
-
+        
       
        
         public Game1()
@@ -64,7 +65,7 @@ namespace Spelprojekt_Kevin_Ö
         protected override void Update(GameTime gameTime)
         {
 
-            starRectangle.Y += 8;
+            starRectangle.Y += 7;
 
 
             int Random = RandomNummer.Next(0, 1100);
@@ -72,7 +73,7 @@ namespace Spelprojekt_Kevin_Ö
             tangentbord = Keyboard.GetState();
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                basketRectangle.X -= 10;
+                basketRectangle.X -= 9;
                 if (basketRectangle.X < 0)
                 {
                     basketRectangle.X = _graphics.PreferredBackBufferWidth - basketRectangle.Width;
@@ -80,7 +81,7 @@ namespace Spelprojekt_Kevin_Ö
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                basketRectangle.X += 10;
+                basketRectangle.X += 9;
                 if (basketRectangle.X > _graphics.PreferredBackBufferWidth - basketRectangle.Width)
                 {
                     basketRectangle.X = 0;
