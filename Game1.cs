@@ -15,17 +15,18 @@ namespace Spelprojekt_Kevin_Ö
         Texture2D spaceBild;
         Texture2D basketBild;
         Texture2D starBild;
+        Texture2D gameoverBild;
 
         SpriteFont Times;
 
         int score = 0;
-       
+        
         Vector2 spacePosition = new Vector2(0, 0);
         KeyboardState tangentbord = Keyboard.GetState();
         Random RandomNummer = new Random();
         Rectangle starRectangle = new Rectangle(550, 550, 80, 80);
         Rectangle basketRectangle = new Rectangle(550, 550, 250, 210);
-        
+        Vector2 gameoverPosition = new Vector2(100, 100);
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -50,6 +51,7 @@ namespace Spelprojekt_Kevin_Ö
             spaceBild = Content.Load<Texture2D>("space");
             basketBild = Content.Load<Texture2D>("basket");
             starBild = Content.Load<Texture2D>("star");
+            gameoverBild = Content.Load<Texture2D>("gameover");
 
             Times = Content.Load<SpriteFont>("Times");
 
@@ -59,7 +61,7 @@ namespace Spelprojekt_Kevin_Ö
         protected override void Update(GameTime gameTime)
         {
 
-            starRectangle.Y += 8;
+            starRectangle.Y += 7;
 
             int Random = RandomNummer.Next(0, 1100);
 
@@ -78,6 +80,14 @@ namespace Spelprojekt_Kevin_Ö
                 starRectangle = new Rectangle(Random, 20, 80, 80);
                 score++;
             }
+
+            spriteBatch.Begin();
+            if (!basketRectangle.Intersects(starRectangle))
+            {
+                spriteBatch.Draw(gameoverBild, gameoverPosition, Color.White);
+            }
+            spriteBatch.End();
+
 
             base.Update(gameTime);
 
@@ -98,9 +108,12 @@ namespace Spelprojekt_Kevin_Ö
             spriteBatch.Draw(basketBild, basketRectangle, Color.White);
             spriteBatch.Draw(starBild, starRectangle, Color.White);
             spriteBatch.DrawString(Times, score.ToString(), Vector2.Zero, Color.White);
-            spriteBatch.End();
+            
            
-          
+            spriteBatch.End();
+            
+
+
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
